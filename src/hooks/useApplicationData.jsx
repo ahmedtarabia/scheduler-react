@@ -16,7 +16,10 @@ export default function useApplicationData() {
   function bookInterview(id, interview, isNew) {
     return new Promise((resolve, reject) => {
       axios
-        .put(`/api/appointments/${id}`, { interview })
+        .put(
+          `https://https://tarabiainterview.herokuapp.com/api/appointments/${id}`,
+          { interview }
+        )
         .then((response) => {
           console.log(response);
 
@@ -54,7 +57,7 @@ export default function useApplicationData() {
   function cancelInterview(id, interview) {
     return new Promise((resolve, reject) => {
       axios
-        .delete(`/api/appointments/${id}`)
+        .delete(`https://tarabiainterview.herokuapp.com/api/appointments/${id}`)
         .then((response) => {
           const appointment = {
             ...state.appointments[id],
@@ -97,9 +100,9 @@ export default function useApplicationData() {
   //Make axios calls to server to fetch data
   useEffect(() => {
     Promise.all([
-      axios.get("/api/days"),
-      axios.get("/api/appointments"),
-      axios.get("/api/interviewers"),
+      axios.get("https://tarabiainterview.herokuapp.com/api/days"),
+      axios.get("https://tarabiainterview.herokuapp.com/api/appointments"),
+      axios.get("https://tarabiainterview.herokuapp.com/api/interviewers"),
     ]).then((all) => {
       console.log(all);
       setState((prev) => ({
